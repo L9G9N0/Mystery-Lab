@@ -7,12 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-<<<<<<< HEAD
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
-=======
-    "preview": "vite preview"
->>>>>>> 00f1fc3ce4eba9c6981f494904358cc3bb22dfc5
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -74,20 +70,13 @@
     "eslint": "^9.11.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
-<<<<<<< HEAD
     "gh-pages": "^6.3.0",
-=======
->>>>>>> 00f1fc3ce4eba9c6981f494904358cc3bb22dfc5
     "globals": "^15.9.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
     "vite": "^7.0.5"
-<<<<<<< HEAD
   },
   "homepage": "https://github.com/L9G9N0/Mystery-Lab"
-=======
-  }
->>>>>>> 00f1fc3ce4eba9c6981f494904358cc3bb22dfc5
 }
