@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-import React from 'react';
->>>>>>> 00f1fc3ce4eba9c6981f494904358cc3bb22dfc5
 import { Toaster } from '@/components/ui/toaster';
 import Header from './components/Header';
 import Hero from './components/Hero';
