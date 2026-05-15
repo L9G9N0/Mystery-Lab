@@ -1,6 +1,4 @@
-This is a comprehensive and professional **README.md** tailored specifically for your **Mystery Lab** project. It highlights the modern tech stack (React + TypeScript + Tailwind), the aesthetic design choices, and the specific architecture of the project.
 
----
 
 # 🧪 Mystery Lab - Interactive Science Platform
 
