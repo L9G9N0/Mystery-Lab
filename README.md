@@ -1,30 +1,16 @@
-# 🧪 Mystery Lab
-
-Welcome to **Mystery Lab**, a modern, interactive web platform designed to bring science experiments to life. Built with React, TypeScript, and Tailwind CSS, this project focuses on providing a seamless and immersive user experience.
-
-##  Live Demo
-[Click here to explore Mystery Lab](https://l9g9n0.github.io/Mystery-Lab/)
-
-## 🛠 Tech Stack
-* **Frontend:** React.js, TypeScript
-* **Styling:** Tailwind CSS, Framer Motion (for animations)
-* **Components:** Radix UI, Lucide React
-* **Deployment:** GitHub Pages
-
-## Key Features
-* **Immersive UI:** A dark-themed, space-inspired design for better focus.
-* **Interactive Components:** Smooth navigation and interactive experiment showcases.
-* **Responsive Layout:** Optimized for both mobile and desktop users.
-* **Performance:** Optimized build using Vite for lightning-fast loading.
-
-## Project Structure
-* `src/components/` - Reusable UI components (Hero, About, FAQ, etc.).
-* `src/lib/` - Utility functions and helpers.
-* `public/` - Static assets and media.
-
-## Why I built this?
-This project was designed to solve the challenge of presenting complex educational information in a visually engaging way. By focusing on **First Principles** design, I ensured the user interface remains intuitive while maintaining a high-tech aesthetic.
-
-## Connect with me
-* **GitHub:** [L9G9N0](https://github.com/L9G9N0)
-* **Portfolio/LinkedIn:** https://www.linkedin.com/in/hariomkumarbharti/
+🧪 Mystery Lab - Interactive Science PlatformA modern, high-performance interactive web application designed to present science experiments and educational content in an immersive, high-tech environment. Built with React, TypeScript, and Framer Motion, Mystery Lab focuses on a "Science-as-an-Experience" philosophy.🔗 Live Demo - Explore Mystery Lab🚀 OverviewMystery Lab was built to solve the problem of dry, unengaging educational interfaces. By utilizing a First Principles design approach, I created a platform that uses space-inspired aesthetics and fluid animations to keep users engaged with complex scientific information.🛠 Tech StackLayerTechnologyFrontendReact.js (Vite)LanguageTypeScriptStylingTailwind CSSAnimationsFramer MotionUI ComponentsRadix UI, Lucide React, Shadcn/UIDeploymentGitHub Pages✨ Key FeaturesImmersive Dark UI: A deep-space aesthetic designed to reduce eye strain and increase user focus on core content.Micro-Interactions: Smooth, physics-based animations using Framer Motion for a premium feel.Component-Based Architecture: Modular design using reusable Shadcn-based components for scalability.Responsive & Fluid: Fully optimized for all screen sizes, from mobile devices to ultra-wide monitors.Science Kits Showcase: Interactive sections designed to display experiment packages with pricing and details.🏗 Project ArchitectureThe project follows a modular React structure to ensure high maintainability:PlaintextMystery-Lab/
+├── src/
+│   ├── components/       # UI Sections (Hero, Pricing, FAQ, ScienceKits)
+│   │   └── ui/           # Low-level primitive components (Buttons, Cards, Tabs)
+│   ├── hooks/            # Custom React hooks (use-toast, etc.)
+│   ├── lib/              # Utility functions and Tailwind merging (utils.ts)
+│   ├── App.tsx           # Main application entry point
+│   └── main.tsx          # Render logic
+├── public/               # Static assets (images, icons)
+├── tailwind.config.js    # Design system tokens and styling rules
+└── vite.config.ts        # Optimized build configuration
+🛠 Development Journey1. ConceptualizationThe goal was to move away from traditional "flat" educational websites. I chose a dark theme with glowing accents to mimic a laboratory or futuristic cockpit environment.2. Implementation with TypeScriptTo ensure the app is "bulletproof," I used TypeScript throughout. This allowed for strict type-checking of component props, especially for the complex interactive science kit data.3. Animation StrategyInstead of static transitions, I implemented Framer Motion.Hero Section: Floating elements to simulate a low-gravity environment.Scroll Reveals: Sections fade and scale in as the user moves down the page to maintain visual momentum.4. OptimizationUsing Vite as the build tool, I ensured that the heavy use of components and animations doesn't impact performance. The app achieves near-perfect Lighthouse scores for load time.⚙️ Installation & Local SetupClone the repository:Bashgit clone https://github.com/L9G9N0/Mystery-Lab.git
+Install dependencies:Bashnpm install
+Run the development server:Bashnpm run dev
+Build for production:Bashnpm run build
+🤝 Connect with MeGitHub: @L9G9N0LinkedIn: Hariom Kumar Bharti
