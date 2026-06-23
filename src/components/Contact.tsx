@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const Contact: React.FC = () => {
@@ -10,25 +10,92 @@ const Contact: React.FC = () => {
     subject: '',
     message: '',
   });
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [submittingContact, setSubmittingContact] = useState(false);
+  const [submittingNewsletter, setSubmittingNewsletter] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.subject) {
+      toast({
+        variant: "destructive",
+        title: "Subject Required",
+        description: "Please select a topic for your inquiry.",
+      });
+      return;
+    }
+    setSubmittingContact(true);
     
-    // Simulate form submission
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    });
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/contact/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.detail || 'Failed to submit contact enquiry.');
+      }
+
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+      });
+    } catch (err: any) {
+      toast({
+        variant: "destructive",
+        title: "Submission Error",
+        description: err.message || "Could not connect to the backend server.",
+      });
+    } finally {
+      setSubmittingContact(false);
+    }
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+    setSubmittingNewsletter(true);
+
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/newsletter/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.detail || 'Failed to subscribe to newsletter.');
+      }
+
+      const data = await res.json();
+      toast({
+        title: "Subscribed!",
+        description: data.message || "Successfully subscribed to the newsletter.",
+      });
+      setNewsletterEmail('');
+    } catch (err: any) {
+      toast({
+        variant: "destructive",
+        title: "Subscription Failed",
+        description: err.message || "Could not submit subscription request.",
+      });
+    } finally {
+      setSubmittingNewsletter(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -131,7 +198,7 @@ const Contact: React.FC = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-stardust-white placeholder-white/50 focus:border-electric-purple focus:outline-none transition-colors"
-                    placeholder="(555) 123-4567"
+                    placeholder="Phone number"
                   />
                 </div>
                 
@@ -175,10 +242,17 @@ const Contact: React.FC = () => {
 
               <button
                 type="submit"
-                className="btn-primary w-full justify-center group"
+                disabled={submittingContact}
+                className="btn-primary w-full justify-center group flex items-center gap-2"
               >
-                Send Message
-                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {submittingContact ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <>
+                    Send Message
+                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </button>
             </form>
           </div>
@@ -231,16 +305,27 @@ const Contact: React.FC = () => {
               <p className="text-stardust-white/70 mb-6">
                 Get weekly experiment ideas, science news, and exclusive offers delivered to your inbox.
               </p>
-              <div className="flex gap-3">
+              <form onSubmit={handleNewsletterSubmit} className="flex gap-3">
                 <input
                   type="email"
+                  required
                   placeholder="Enter your email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
                   className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-stardust-white placeholder-white/50 focus:border-electric-purple focus:outline-none transition-colors"
                 />
-                <button className="btn-primary px-6">
-                  Subscribe
+                <button 
+                  type="submit" 
+                  disabled={submittingNewsletter} 
+                  className="btn-primary px-6 flex items-center justify-center min-w-[120px]"
+                >
+                  {submittingNewsletter ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  ) : (
+                    'Subscribe'
+                  )}
                 </button>
-              </div>
+              </form>
             </div>
 
             {/* Social Media Links */}
