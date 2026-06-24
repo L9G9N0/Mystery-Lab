@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
     setSubmittingContact(true);
     
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const apiUrl = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:8000' : '/api');
       const res = await fetch(`${apiUrl}/contact/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
     setSubmittingNewsletter(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const apiUrl = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:8000' : '/api');
       const res = await fetch(`${apiUrl}/newsletter/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

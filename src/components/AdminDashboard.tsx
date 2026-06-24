@@ -28,7 +28,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onClose }) => {
   const [error, setError] = useState<string | null>(null);
 
   const token = session?.access_token;
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const apiUrl = import.meta.env.VITE_API_URL || (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:8000' : '/api');
 
   const fetchData = async () => {
     if (!token) return;
