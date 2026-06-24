@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: "/Mystery-Lab/",
+  base: process.env.VERCEL ? "/" : "/Mystery-Lab/",
   plugins: [react()],
   resolve: {
     alias: {
